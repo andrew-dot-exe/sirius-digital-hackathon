@@ -38,8 +38,7 @@ export const executeRequest = async (rule: string, prompt: string) => {
             throw new Error('Failed to get a valid IAM token');
         }
 
-        // Вывод сырых данных запроса
-        console.log('Request Payload:', JSON.stringify(payload, null, 2));
+
 
         const response = await axios.post(YANDEX_ENDPOINT, payload, {
             headers: {
@@ -48,9 +47,6 @@ export const executeRequest = async (rule: string, prompt: string) => {
                 'x-folder-id': process.env.YNDX_FOLDER
             }
         });
-
-        // Вывод сырых данных ответа
-        console.log('Response Data:', JSON.stringify(response.data, null, 2));
 
         // Обработка ответа
         const responseData: ResponseData = response.data;
@@ -61,15 +57,16 @@ export const executeRequest = async (rule: string, prompt: string) => {
             const alternative = responseData.result.alternatives[0];
             if (alternative.status === "ALTERNATIVE_STATUS_FINAL") {
                 console.log('Assistant Message:', alternative.message.text);
+                return responseData;
             } else {
-                console.log('Alternative status:', alternative.status);
+                return null;
             }
         } else {
-            console.log('No alternatives found in response.');
+            return null;
         }
 
     } catch (error) {
-        console.error('Error:', error);
+        return null;
     }
 };
 
