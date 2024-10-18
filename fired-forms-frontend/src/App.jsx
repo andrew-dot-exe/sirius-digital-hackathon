@@ -1,43 +1,26 @@
-import { useState } from 'react'
-import './App.css'
-import { Routes, Route, Link } from "react-router-dom"
+import './App.css';
+import {Routes, Route, Link} from "react-router-dom"
 // Import the pages
-//import Home from "./components/Home";
-import './components/LoginButton';
-import LoginButton from './components/LoginButton';
-import LoginForm  from './components/LoginForm';
+import Home from "./Pages/Home";
+import ReportPage from "./Pages/ReportPage";
 
-/*
-<div className="App">
-        <Routes>
-        <Route exact path="/" element={<h>Home Page</h>} />
-        <Route exact path="home" element={<Home />} />
-        </Routes>
-        <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="home">Home </Link></li>
-        </ul>
-        </div>
-      </div>
-      <button style="position: fixed; top: 10px; right: 10px; Color:Black;" onClick={
-        document.write(1)
-      }>Вход</button>
-      */
 
 function App() {
 
-  const [isFormVisible, setFormVisible] = useState(false);
-
-  const ShowLoginForm = () => {
-    setFormVisible(true);
-  };
 
   return (
-    <div className='App'>
-      <LoginButton onClick = {ShowLoginForm} />
-      {isFormVisible && <LoginForm />}
-    </div>
+    <div className="App">
+		<Routes>
+		<Route exact path="/" element={<Home />} />
+		<Route exact path="home" element={<Home />} />
+		<Route exact path="report" element={<ReportPage />} />
+		</Routes>
+		<ul>
+			<li><Link to="/"></Link></li>
+			<li><Link to="home"></Link></li>
+			<li><Link to="report"></Link></li>
+		</ul>
+	</div>
   )
 }
 

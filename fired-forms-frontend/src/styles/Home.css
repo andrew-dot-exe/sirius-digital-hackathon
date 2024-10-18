@@ -1,0 +1,13 @@
+.home-content
+{
+  width: 95%;
+  height: 70%;
+  position: absolute;
+  background-color: aqua;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(2, 200px);
+}
