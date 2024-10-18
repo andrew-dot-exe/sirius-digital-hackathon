@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import LoginButton from '../components/LoginButton';
-import LoginForm  from '../components/LoginForm';
-import "../styles/Home.css"
+import LoginForm  from '../components/LoginForm'
 
 function Home() {
   const [isFormVisible, setFormVisible] = useState(false);
@@ -18,7 +17,7 @@ function Home() {
   };
 
   return (
-    <div className='App'>
+    <div className='Home'>
         <div className='home-content'>
           <div className='home-image'></div>
           <div className='home-text'>
