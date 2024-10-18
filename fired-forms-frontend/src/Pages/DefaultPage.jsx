@@ -2,7 +2,7 @@ import React from "react";
 import QuestionForm  from "../components/QuestionForm";
 import UserGreeting from "../components/UserGreeting";
 
-function DefaultPage()
+function DefaultPage()  
 {
     return (
         <div className="default-page">

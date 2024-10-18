@@ -1,29 +1,30 @@
 import React from 'react'
 import { useState } from 'react'
 import "../styles/ReportPage.css"
+import DatePicker from 'react-datepicker';
+import { format } from 'date-fns';
 
 function ReportPage() {
-    const [ot, setOt] = useState('');
-    const [to, setTo] = useState('');
+    const [selectedFirstDate, setSelectedFirstDate] = useState(null);
+    const [selectedSecondDate, setSelectedSecondDate] = useState(null);
+    
 	return (
 		<div >
             <form className='report-form'>
 				<p>Сформировать отчет</p>
 				<label htmlFor="ot">От</label>
-                <input
-                    type="text"
-                    id="ot"
-                    value={ot}
-                    onChange={(e) => setOt(e.target.value)}
-                    required
+                <DatePicker 
+                    selected={selectedFirstDate}
+                    onChange={(date) => setSelectedFirstDate}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText='Выберите дату'
                 />
                 <label htmlFor="to">До</label>
-                <input
-                    type="text"
-                    id="to"
-                    value={to}
-                    onChange={(e) => setTo(e.target.value)}
-                    required
+                <DatePicker 
+                    selected={selectedSecondDate}
+                    onChange={(date) => setSelectedSecondDate}
+                    dateFormat="dd/MM/yyyy"
+                    placeholderText='Выберите дату'
                 />
                 <button type = "enter"></button>
 			</form>
