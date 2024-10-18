@@ -1,0 +1,15 @@
+{
+  "name": "sirius-digital-hackathon",
+  "version": "1.0.0",
+  "description": "Solution by HackstreetBoys team",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend":"npm run dev --prefix fired-forms-frontend/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.0.1",
+    "vite": "^5.4.9"
+  }
+}
