@@ -50,14 +50,11 @@ export const executeRequest = async (rule: string, prompt: string) => {
 
         // Обработка ответа
         const responseData: ResponseData = response.data;
-        console.log('Model Version:', responseData.result.modelVersion);
-        console.log('Usage:', responseData.result.usage);
 
         if (responseData.result.alternatives && responseData.result.alternatives.length > 0) {
             const alternative = responseData.result.alternatives[0];
             if (alternative.status === "ALTERNATIVE_STATUS_FINAL") {
-                console.log('Assistant Message:', alternative.message.text);
-                return responseData;
+                return alternative.message.text;
             } else {
                 return null;
             }
