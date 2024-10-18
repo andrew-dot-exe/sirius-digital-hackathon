@@ -1,12 +1,11 @@
 import React from "react";
 import '../styles/LoginButton.css';
 
-function LoginButton()
+const LoginButton = () =>
 {
-    return
-    (
+    return (
         <button className="login-button">
-            
+            Войти
         </button>
     );
 };

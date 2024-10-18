@@ -3,4 +3,6 @@
     position: absolute;
     right: 16px;
     top: 16px;
+    background-color: blue;
+    color: white;
 }

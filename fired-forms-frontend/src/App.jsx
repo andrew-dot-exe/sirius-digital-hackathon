@@ -2,7 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import { Routes, Route, Link } from "react-router-dom"
 // Import the pages
-import Home from "./components/Home"
+//import Home from "./components/Home";
+import './components/LoginButton';
+import LoginButton from './components/LoginButton';
 
 /*
 <div className="App">
@@ -25,14 +27,10 @@ import Home from "./components/Home"
 function App() {
 
   return (
-    <>
-      <button onClick={
-        someFun()
-      }>Вход</button>
-      <h1>Log</h1>
-      <p>some text</p>
-    </>
+    <div className='App'>
+      <LoginButton />
+    </div>
   )
 }
 
-export default App
+export default App;
