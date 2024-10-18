@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^9.0.1",
-    "react-datepicker": "^7.5.0",
     "react-router-dom": "^6.27.0",
     "styled-components": "^6.1.13",
     "vite": "^5.4.9"
