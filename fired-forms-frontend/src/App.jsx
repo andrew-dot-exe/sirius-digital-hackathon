@@ -1,44 +1,28 @@
-import { useState } from 'react'
-import './App.css'
-import { Routes, Route, Link } from "react-router-dom"
-// Import the pages
-//import Home from "./components/Home";
-import './components/LoginButton';
+import { useState } from 'react';
+import './App.css';
 import LoginButton from './components/LoginButton';
-import LoginForm  from './components/LoginForm';
-
-/*
-<div className="App">
-        <Routes>
-        <Route exact path="/" element={<h>Home Page</h>} />
-        <Route exact path="home" element={<Home />} />
-        </Routes>
-        <div>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="home">Home </Link></li>
-        </ul>
-        </div>
-      </div>
-      <button style="position: fixed; top: 10px; right: 10px; Color:Black;" onClick={
-        document.write(1)
-      }>Вход</button>
-      */
+import LoginForm from './components/LoginForm';
 
 function App() {
+    const [isFormVisible, setFormVisible] = useState(false);
+    const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
 
-  const [isFormVisible, setFormVisible] = useState(false);
+    const ToggleVisibleLoginForm = () => {
+        setFormVisible(true); // Показываем форму
+        setLoginButtonVisible(false); // Скрываем кнопку "Войти"
+    };
 
-  const ShowLoginForm = () => {
-    setFormVisible(true);
-  };
+    const CloseLoginForm = () => {
+        setFormVisible(false); // Скрываем форму
+        setLoginButtonVisible(true); // Показываем кнопку "Войти"
+    };
 
-  return (
-    <div className='App'>
-      <LoginButton onClick = {ShowLoginForm} />
-      {isFormVisible && <LoginForm />}
-    </div>
-  )
+    return (
+        <div className='App'>
+            {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />} {/* Кнопка "Войти" */}
+            {isFormVisible && <LoginForm onClose={CloseLoginForm} />} {/* Форма входа */}
+        </div>
+    );
 }
 
 export default App;
