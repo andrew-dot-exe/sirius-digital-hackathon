@@ -4,13 +4,8 @@ import { Routes, Route, Link } from "react-router-dom"
 // Import the pages
 import Home from "./components/Home"
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>     
-
-      <div className="App">
+/*
+<div className="App">
         <Routes>
         <Route exact path="/" element={<h>Home Page</h>} />
         <Route exact path="home" element={<Home />} />
@@ -22,6 +17,20 @@ function App() {
         </ul>
         </div>
       </div>
+      <button style="position: fixed; top: 10px; right: 10px; Color:Black;" onClick={
+        document.write(1)
+      }>Вход</button>
+      */
+
+function App() {
+
+  return (
+    <>
+      <button onClick={
+        someFun()
+      }>Вход</button>
+      <h1>Log</h1>
+      <p>some text</p>
     </>
   )
 }
