@@ -4,25 +4,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-<<<<<<< HEAD
-.home-content
-{
-  width: 95%;
-  height: 70%;
-  position: absolute;
-  background-color: ;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  justify-content: center;
-  box-shadow: 4px 4px 8px 6px rgba(34, 60, 80, 0.2);;
-}
-=======
-ul li {
-	list-style: none;
-}
->>>>>>> f2a110ae84ae6e086cf1703236abfa4a2026c180
