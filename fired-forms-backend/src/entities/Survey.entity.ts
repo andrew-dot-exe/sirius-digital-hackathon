@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
 import { SurveyQuestion } from './SurveyQuestion.entity'; // Путь к файлу SurveyQuestion.entity
 
 @Entity('surveys')
@@ -9,7 +9,7 @@ export class Survey {
   @Column({ name: 'user_id' })
   userId: number;
 
-  @Column({ name: 'completion_date' })
+  @CreateDateColumn({ name: 'completion_date' })
   completionDate: Date;
 
   @OneToMany(() => SurveyQuestion, (surveyQuestion) => surveyQuestion.survey)
