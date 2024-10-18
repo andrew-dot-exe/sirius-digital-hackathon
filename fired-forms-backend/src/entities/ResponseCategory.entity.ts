@@ -19,9 +19,4 @@ export class ResponseCategory {
   @Column()
   value: string;
 
-  @OneToMany(
-    () => ReportRecommendation,
-    (recommendation) => recommendation.category,
-  )
-  recommendations: ReportRecommendation[];
 }
