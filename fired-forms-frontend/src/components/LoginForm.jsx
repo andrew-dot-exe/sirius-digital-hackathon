@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/LoginForm.css';
+import { useState } from "react";
 
 function LoginForm()
 {
@@ -16,8 +17,7 @@ function LoginForm()
         setError('');   
         console.log('Вход с:', { login, password });
     };
-    return
-    (
+    return (
         <div className="login-form">
             <p>Вход</p>
             <form onSubmit={handleForm}>

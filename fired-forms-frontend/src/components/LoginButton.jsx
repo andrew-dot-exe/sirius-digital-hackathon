@@ -1,10 +1,11 @@
 import React from "react";
 import '../styles/LoginButton.css';
 
-const LoginButton = () =>
+const LoginButton = ({ onClick }) =>
 {
+    
     return (
-        <button className="login-button">
+        <button  className="login-button" onClick={onClick}>
             Войти
         </button>
     );

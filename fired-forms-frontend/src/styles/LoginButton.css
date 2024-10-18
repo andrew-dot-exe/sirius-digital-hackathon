@@ -3,6 +3,12 @@
     position: absolute;
     right: 16px;
     top: 16px;
-    background-color: blue;
+    background-color: #405cf5;
     color: white;
 }
+
+.login-button:hover
+{
+    
+}
+

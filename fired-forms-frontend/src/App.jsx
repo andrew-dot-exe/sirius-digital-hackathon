@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom"
 //import Home from "./components/Home";
 import './components/LoginButton';
 import LoginButton from './components/LoginButton';
+import LoginForm  from './components/LoginForm';
 
 /*
 <div className="App">
@@ -26,9 +27,16 @@ import LoginButton from './components/LoginButton';
 
 function App() {
 
+  const [isFormVisible, setFormVisible] = useState(false);
+
+  const ShowLoginForm = () => {
+    setFormVisible(true);
+  };
+
   return (
     <div className='App'>
-      <LoginButton />
+      <LoginButton onClick = {ShowLoginForm} />
+      {isFormVisible && <LoginForm />}
     </div>
   )
 }
