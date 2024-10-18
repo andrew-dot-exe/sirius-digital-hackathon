@@ -8,7 +8,6 @@ const UserGreeting = ({ userFIO, onLogout }) => {
 
     const handleLogout = () => {
         onLogout(); 
-        
         navigate('/'); 
     };
 
