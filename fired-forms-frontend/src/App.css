@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .home-content
 {
   width: 95%;
@@ -20,3 +21,8 @@
   justify-content: center;
   box-shadow: 4px 4px 8px 6px rgba(34, 60, 80, 0.2);;
 }
+=======
+ul li {
+	list-style: none;
+}
+>>>>>>> f2a110ae84ae6e086cf1703236abfa4a2026c180

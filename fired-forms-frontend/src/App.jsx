@@ -1,36 +1,27 @@
-import { useState } from 'react';
 import './App.css';
-import LoginButton from './components/LoginButton';
-import LoginForm from './components/LoginForm';
+import {Routes, Route, Link} from "react-router-dom"
+// Import the pages
+import Home from "./Pages/Home";
+import ReportPage from "./Pages/ReportPage";
+
 
 function App() {
-    const [isFormVisible, setFormVisible] = useState(false);
-    const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
 
-    const ToggleVisibleLoginForm = () => {
-        setFormVisible(true);
-        setLoginButtonVisible(false);
-    };
 
-    const CloseLoginForm = () => {
-        setFormVisible(false);
-        setLoginButtonVisible(true);
-    };
-
-    return (
-        <div className='App'>
-            <div className='home-content'>
-              <div className='home-image'></div>
-              <div className='home-text'>
-                <h1>Уважаемый сотрудник!</h1>
-                <p>Добро пожаловать на сайт, где Вы можете войти в линчый кабинет сотрудника компании.</p>
-                <p>Введите корректный логин и пароль, выданный Вам системным администратором.</p>
-              </div>
-            </div>
-            {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />}
-            {isFormVisible && <LoginForm onClose={CloseLoginForm} />}
-        </div>
-    );
+  return (
+    <div className="App">
+		<Routes>
+		<Route exact path="/" element={<Home />} />
+		<Route exact path="home" element={<Home />} />
+		<Route exact path="report" element={<ReportPage />} />
+		</Routes>
+		<ul>
+			<li><Link to="/"></Link></li>
+			<li><Link to="home"></Link></li>
+			<li><Link to="report"></Link></li>
+		</ul>
+	</div>
+  )
 }
 
 export default App;
