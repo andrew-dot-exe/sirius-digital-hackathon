@@ -10,6 +10,7 @@ import { AnswerCategory } from './entities/AnswerCategory.entity';
 import { ReportRecommendation } from './entities/ReportRecomendation.entity';
 import { ResponseCategory } from './entities/ResponseCategory.entity';
 import { SurveyQuestion } from './entities/SurveyQuestion.entity';
+import { Report } from './entities/Report.entity';
 
 @Module({
   imports: [

@@ -5,7 +5,6 @@ import { UsersService } from '../services/UsersService'; // Импортируй
 import { User } from '../entities/User.entity'; // Импортируйте вашу сущность User
 
 @Injectable()
-@UseGuards(JwtAuthGuard, RolesGuard)
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly usersService: UsersService) {
     super({
