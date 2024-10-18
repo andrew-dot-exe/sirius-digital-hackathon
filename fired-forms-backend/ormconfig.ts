@@ -16,7 +16,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'postgres',
   //Никитиа sa
   //Дима qwerty
-  password: 'postgre',
+  password: 'sa',
   database: 'postgres',
   logging: true,
   synchronize: false,
