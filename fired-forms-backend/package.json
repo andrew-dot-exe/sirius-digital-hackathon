@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "backend-nest",
   "version": "0.0.1",
   "description": "",
@@ -19,7 +18,9 @@
     "migration:create": "cross-var ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:create ./src/migrations/$npm_config_name",
     "migration:generate": "cross-var npm run typeorm -- migration:generate ./src/migrations/$npm_config_name",
     "migration:run": " npm run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert"
+    "migration:revert": "npm run typeorm -- migration:revert",
+        "compile-yandex":"tsc yandexai-prompts/index.ts",
+    "run-yandex": "ts-node yandexai-prompts/index.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -38,7 +39,10 @@
     "passport-jwt": "^4.0.1",
     "pg": "^8.13.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -79,25 +83,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-=======
-  "name": "fired-forms-backend",
-  "version": "1.0.0",
-  "description": "RESTful Backend for FiredForms website",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-yandex":"tsc yandexai-prompts/index.ts",
-    "run-yandex": "ts-node yandexai-prompts/index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.7.7",
-    "dotenv": "^16.4.5",
-    "ts-node": "^10.9.2"
-  },
-  "devDependencies": {
-    "@types/node": "^22.7.6"
->>>>>>> de382d2 (add YandexAI support)
-  }
+}
 }
