@@ -19,7 +19,8 @@ import { SurveyModule } from './survey.module';
     TypeOrmModule.forRoot(dataSourceOptions),
     TypeOrmModule.forFeature([User, UserLevel, AnswerCategory, Survey, Question, Report, ReportRecommendation, ResponseCategory, SurveyQuestion]),
     UsersModule,
-    QuestionsModule
+    QuestionsModule,
+    SurveyModule
   ],
 })
 export class AppModule {}

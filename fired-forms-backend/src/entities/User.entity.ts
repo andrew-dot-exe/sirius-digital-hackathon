@@ -30,6 +30,6 @@ export class User {
   @JoinColumn({ name: 'user_level_id' })
   userLevel: UserLevel;
 
-  @OneToMany(() => Survey, (survey) => survey.users) 
+  @OneToMany(() => Survey, (survey) => survey.user) 
   surveys: Survey[];
 }

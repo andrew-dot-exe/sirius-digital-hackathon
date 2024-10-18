@@ -113,8 +113,8 @@ export class CreateUserAndUserLevelTables1672512345678
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
-    await queryRunner.dropTable('user_levels');
+    await queryRunner.query(`DROP TABLE "users";`);
+    await queryRunner.query(`DROP TABLE "user_levels";`);
     await queryRunner.query(`DROP TABLE "report_recommendations";`);
     await queryRunner.query(`DROP TABLE "response_categories";`);
     await queryRunner.query(`DROP TABLE "survey_questions";`);

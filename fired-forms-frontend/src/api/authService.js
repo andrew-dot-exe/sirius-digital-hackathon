@@ -18,7 +18,6 @@ export async function loginUser(login, password) {
         const data = await response.json();
 
         if (data.access_token) {
-            // Store the JWT token in a cookie for access across the app
             Cookies.set('authToken', data.access_token, { expires: 0.021, secure: false });
             return data.access_token;
         } else {
