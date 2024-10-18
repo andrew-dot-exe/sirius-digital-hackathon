@@ -66,6 +66,14 @@ export class CreateUserAndUserLevelTables1672512345678
      CONSTRAINT "FK_user_survey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE
    );
  `);
+ await queryRunner.query(`
+ INSERT INTO "questions" (name) VALUES
+('Какие причины сформировали ваше решение уйти из компании?'),
+('Есть ли еще дополнительные причины, которые повлияли на решение уйти из компании?'),
+('Рассматриваете ли вы возможность остаться в компании или перевестись внутри отрасли?'),
+('Готовы ли вы рекомендовать компанию как работодателя?'),
+('Рассматриваете ли вы возможность возвращения в компанию?');
+`);
 
  // Создание таблицы SurveyQuestion
  await queryRunner.query(`

@@ -10,14 +10,24 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(login: string, password: string): Promise<any> {
-    const user = await this.usersService.findByLogin(login);
-    if (user && (await bcrypt.compare(password, user.password_hash))) {
-      const { password_hash, ...result } = user;
-      return result;
-    }
+ async validateUser(login: string, password: string): Promise<any> {
+  
+  const user = await this.usersService.findByLogin(login);
+  
+  if (!user) {
     throw new UnauthorizedException('Invalid login or password');
   }
+
+  const passwordMatches = await bcrypt.compare(password, user.password_hash);
+  
+  if (passwordMatches) {
+    const { password_hash, ...result } = user;
+    return result;
+  }
+  
+  throw new UnauthorizedException('Invalid login or password');
+}
+
 
   async login(user: any) {
     const payload = {

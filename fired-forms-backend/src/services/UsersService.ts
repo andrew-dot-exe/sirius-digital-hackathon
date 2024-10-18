@@ -18,34 +18,36 @@ export class UsersService {
     private readonly userLevelRepository: Repository<UserLevel>,
   ) {}
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(createUserDto: CreateUserDto): Promise<Omit<User, 'login' | 'password_hash'>> {
     const { fio, login, password, userLevelId } = createUserDto;
+
     const userLevel = await this.userLevelRepository.findOne({
       where: { id: userLevelId },
     });
     if (!userLevel) {
-      throw new NotFoundException(
-        `User level with ID ${userLevelId} not found.`,
-      );
+      throw new NotFoundException(`User level with ID ${userLevelId} not found.`);
     }
-
+  
     const existingUser = await this.userRepository.findOne({
       where: { login },
     });
     if (existingUser) {
       throw new ConflictException(`Login '${login}' already exists.`);
     }
-
+  
     const passwordHash = await bcrypt.hash(password, 10);
-
+  
     const newUser = this.userRepository.create({
       fio,
       login,
       password_hash: passwordHash,
       userLevel,
     });
-
-    return this.userRepository.save(newUser);
+  
+    const savedUser = await this.userRepository.save(newUser);
+    
+    const { password_hash, ...result } = savedUser; 
+    return result;
   }
 
   async findByLogin(login: string): Promise<User | undefined> {

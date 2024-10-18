@@ -11,12 +11,15 @@ import { ReportRecommendation } from './entities/ReportRecomendation.entity';
 import { ResponseCategory } from './entities/ResponseCategory.entity';
 import { SurveyQuestion } from './entities/SurveyQuestion.entity';
 import { Report } from './entities/Report.entity';
+import { QuestionsModule } from './question.module';
+import { SurveyModule } from './survey.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
     TypeOrmModule.forFeature([User, UserLevel, AnswerCategory, Survey, Question, Report, ReportRecommendation, ResponseCategory, SurveyQuestion]),
     UsersModule,
+    QuestionsModule
   ],
 })
 export class AppModule {}
