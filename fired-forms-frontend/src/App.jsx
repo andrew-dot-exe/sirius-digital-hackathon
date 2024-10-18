@@ -8,19 +8,27 @@ function App() {
     const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
 
     const ToggleVisibleLoginForm = () => {
-        setFormVisible(true); // Показываем форму
-        setLoginButtonVisible(false); // Скрываем кнопку "Войти"
+        setFormVisible(true);
+        setLoginButtonVisible(false);
     };
 
     const CloseLoginForm = () => {
-        setFormVisible(false); // Скрываем форму
-        setLoginButtonVisible(true); // Показываем кнопку "Войти"
+        setFormVisible(false);
+        setLoginButtonVisible(true);
     };
 
     return (
         <div className='App'>
-            {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />} {/* Кнопка "Войти" */}
-            {isFormVisible && <LoginForm onClose={CloseLoginForm} />} {/* Форма входа */}
+            <div className='home-content'>
+              <div className='home-image'></div>
+              <div className='home-text'>
+                <h1>Уважаемый сотрудник!</h1>
+                <p>Добро пожаловать на сайт, где Вы можете войти в линчый кабинет сотрудника компании.</p>
+                <p>Введите корректный логин и пароль, выданный Вам системным администратором.</p>
+              </div>
+            </div>
+            {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />}
+            {isFormVisible && <LoginForm onClose={CloseLoginForm} />}
         </div>
     );
 }

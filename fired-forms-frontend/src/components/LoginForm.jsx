@@ -42,7 +42,7 @@ function LoginForm({onClose}) //передаём пропс в качестве 
                     required
                 />
                 {error && <p className="error">{error}</p>}
-                <button type = "enter"></button>
+                <button type = "submit">Отправить</button>
             </form>
         </div>
     );
