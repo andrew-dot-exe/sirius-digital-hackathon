@@ -1,13 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
-import { SurveyQuestion } from './SurveyQuestion.entity'; // Путь к файлу SurveyQuestion.entity
+import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
+import { SurveyQuestion } from './SurveyQuestion.entity';
+import { User } from './User.entity';
 
 @Entity('surveys')
 export class Survey {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'user_id' })
-  userId: number;
+  @ManyToOne(() => User, (user) => user.surveys) 
+  users: number;
 
   @CreateDateColumn({ name: 'completion_date' })
   completionDate: Date;

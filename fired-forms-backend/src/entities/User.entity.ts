@@ -4,8 +4,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany
 } from 'typeorm';
 import { UserLevel } from './UserLevel.entity'; // Adjust the path according to your project structure
+import { Survey } from './Survey.entity';
 
 @Entity('users')
 export class User {
@@ -27,4 +29,7 @@ export class User {
   })
   @JoinColumn({ name: 'user_level_id' })
   userLevel: UserLevel;
+
+  @OneToMany(() => Survey, (survey) => survey.users) 
+  surveys: Survey[];
 }

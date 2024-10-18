@@ -5,18 +5,21 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { SurveyQuestion } from './SurveyQuestion.entity'; // Путь к файлу с сущностью SurveyQuestion
 import { ReportRecommendation } from './ReportRecomendation.entity'; // Путь к файлу с сущностью ReportRecommendation
+import { AnswerCategory } from './AnswerCategory.entity';
+import { SurveyQuestion } from './SurveyQuestion.entity';
 
 @Entity('response_categories') // Название таблицы
 export class ResponseCategory {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => SurveyQuestion, (question) => question.responseCategories) // Связь с SurveyQuestion
-  surveyQuestion: SurveyQuestion; // Связь с вопросом анкеты
+  @ManyToOne(() => SurveyQuestion, (surveyQuestion) => surveyQuestion.responseCategories) 
+  surveyQuestion: SurveyQuestion; // Добавляем это поле
 
   @Column()
   value: string;
 
+  @OneToMany(() => ReportRecommendation, (recommendation) => recommendation.category)
+  recommendations: ReportRecommendation[];
 }
