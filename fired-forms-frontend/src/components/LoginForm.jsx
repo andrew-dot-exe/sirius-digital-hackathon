@@ -6,6 +6,7 @@ import CloseButton from "./CloseButton";
 
 function LoginForm({onClose}) //передаём пропс в качестве параметра
 {
+    
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
