@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'; // Import js-cookie
 import { useNavigate } from 'react-router-dom';
 
 const UserGreeting = ({ userFIO, onLogout }) => {
+    
     const navigate = useNavigate();
 
     const handleLogout = () => {

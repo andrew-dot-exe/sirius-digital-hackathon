@@ -9,8 +9,7 @@ import DefaultPage from './Pages/DefaultPage';
 
 
 function App() {
-
-
+	
 	return (
 		<div className="App">
 			<Routes>
