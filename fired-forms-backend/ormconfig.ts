@@ -7,6 +7,8 @@ export const dataSourceOptions: DataSourceOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
+  //Никитиа sa
+  //Дима qwerty
   password: 'sa',
   database: 'postgres',
   logging: true,
