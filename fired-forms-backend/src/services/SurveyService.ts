@@ -35,15 +35,26 @@ export class SurveyService {
         surveyQuestion.question = question;
         surveyQuestion.answer = questionDto.answer;
 
-        const answerCategory = new AnswerCategory();
-        answerCategory.name = await executeRequest(`Необходимо ответить на вопрос, ${surveyQuestion.question}` +
+        const categoryName = await executeRequest(`Необходимо ответить на вопрос, ${surveyQuestion.question}` +
         "Ответ должен быть таким, чтобы его можно было категоризовать, то есть, состоять из минимума слов. Не должно быть никаких уточнений",
         surveyQuestion.answer);
-
-        answerCategory.surveyQuestions.push(surveyQuestion);
         
-        await transactionalEntityManager.save(surveyQuestion);
-        await transactionalEntityManager.save(answerCategory);
+        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: categoryName } });
+
+        if (!answerCategory) {
+            answerCategory = new AnswerCategory();
+            answerCategory.name = categoryName;
+
+            // Добавляем surveyQuestion к answerCategory
+            answerCategory.surveyQuestions.push(surveyQuestion);
+
+            // Сохраняем новую категорию
+            await transactionalEntityManager.save(answerCategory);
+        } else {
+            // Если категория уже существует, просто добавляем surveyQuestion к существующей категории
+            answerCategory.surveyQuestions.push(surveyQuestion);
+            await transactionalEntityManager.save(answerCategory); // Обновляем категорию
+        }
       }
 
       return savedSurvey;
