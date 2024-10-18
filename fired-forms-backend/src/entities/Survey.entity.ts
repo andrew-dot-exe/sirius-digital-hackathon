@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, CreateDateColumn, JoinColumn } from 'typeorm';
 import { SurveyQuestion } from './SurveyQuestion.entity';
 import { User } from './User.entity';
 
@@ -8,7 +8,8 @@ export class Survey {
   id: number;
 
   @ManyToOne(() => User, (user) => user.surveys) 
-  users: number;
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @CreateDateColumn({ name: 'completion_date' })
   completionDate: Date;
