@@ -37,6 +37,18 @@ export class CreateUserAndUserLevelTables1672512345678
    );
  `);
 
+ await queryRunner.query(
+  `
+  INSERT INTO answer_categories (name)
+VALUES
+('Недовольство условиями труда'),
+('Недовольство рабочим составом'),
+('Семейные обстоятельства'),
+('Личные проблемы'),
+('Дисциплинарные проступки работника'),
+('Прочее');
+  `
+ )
  // Создание таблицы Question
  await queryRunner.query(`
    CREATE TABLE "questions" (
@@ -113,14 +125,14 @@ export class CreateUserAndUserLevelTables1672512345678
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TABLE "users";`);
-    await queryRunner.query(`DROP TABLE "user_levels";`);
-    await queryRunner.query(`DROP TABLE "report_recommendations";`);
-    await queryRunner.query(`DROP TABLE "response_categories";`);
-    await queryRunner.query(`DROP TABLE "survey_questions";`);
-    await queryRunner.query(`DROP TABLE "surveys";`);
-    await queryRunner.query(`DROP TABLE "reports";`);
-    await queryRunner.query(`DROP TABLE "questions";`);
-    await queryRunner.query(`DROP TABLE "answer_categories";`);
+    await queryRunner.query(`DROP TABLE "users" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "user_levels" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "report_recommendations" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "response_categories" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "survey_questions" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "surveys" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "reports" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "questions" CASCADE;`);
+    await queryRunner.query(`DROP TABLE "answer_categories" CASCADE;`);
   }
 }

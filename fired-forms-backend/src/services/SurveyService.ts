@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, EntityManager } from 'typeorm';
 import { Survey } from '../entities/Survey.entity';
@@ -7,7 +7,8 @@ import { Question } from '../entities/Question.entity';
 import { CreateSurveyDto } from '../dto/CreateSurvey.dto';
 import { User } from '../entities/User.entity';
 import { executeRequest } from '../yandexai-prompts/logic';
-import { AnswerCategory } from 'src/entities/AnswerCategory.entity';
+import { AnswerCategory } from '../entities/AnswerCategory.entity';
+import { delay } from 'rxjs';
 @Injectable()
 export class SurveyService {
   constructor(
@@ -19,7 +20,7 @@ export class SurveyService {
   async createSurvey(userId: number, createSurveyDto: CreateSurveyDto): Promise<Survey> {
     return await this.surveyRepository.manager.transaction(async transactionalEntityManager => {
       const survey = new Survey();
-      survey.user = { id: userId } as User; // Проверьте, что User определен
+      survey.user = { id: userId } as User; 
 
       const savedSurvey = await transactionalEntityManager.save(survey);
 
@@ -35,27 +36,50 @@ export class SurveyService {
         surveyQuestion.question = question;
         surveyQuestion.answer = questionDto.answer;
 
-        const categoryName = await executeRequest(`Необходимо ответить на вопрос, ${surveyQuestion.question}` +
-        "Ответ должен быть таким, чтобы его можно было категоризовать, то есть, состоять из минимума слов. Не должно быть никаких уточнений",
-        surveyQuestion.answer);
+        const answerCategories = await transactionalEntityManager.find(AnswerCategory, {
+          select: ['name'],
+        });
+        const categoriesArray = answerCategories.map(category => category.name);
+        const categoryName = await executeRequest(`
+        Ты — нейросеть для классификации текстов. Твоя задача — проанализировать вопрос и ответ, а затем отнести ответ к одной из категорий.
+         Категории могут быть: ${categoriesArray},
+        если нужной категории нет, "Другое".`,
+        `Классифицируй следующий текст:
         
-        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: categoryName } });
+        Вопрос: "${surveyQuestion.question}"
+        Ответ: "${surveyQuestion.answer}"
+        
+        Укажи категорию:
+        `);
+        await delay(200);
+        
+        const finalCategoryName = categoryName ?? "Другое";
+        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: finalCategoryName } });
+        if (answerCategory) {
+          if (!answerCategory.surveyQuestions) {
+              answerCategory.surveyQuestions = []; 
+          }
+      
+          answerCategory.surveyQuestions.push(surveyQuestion);
+          
+          await transactionalEntityManager.save(answerCategory);
+        
+        await transactionalEntityManager.save(surveyQuestion);
+      } 
+      else{
+        let otherCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: 'Другое' } });
 
-        if (!answerCategory) {
-            answerCategory = new AnswerCategory();
-            answerCategory.name = categoryName;
-
-            // Добавляем surveyQuestion к answerCategory
-            answerCategory.surveyQuestions.push(surveyQuestion);
-
-            // Сохраняем новую категорию
-            await transactionalEntityManager.save(answerCategory);
-        } else {
-            // Если категория уже существует, просто добавляем surveyQuestion к существующей категории
-            answerCategory.surveyQuestions.push(surveyQuestion);
-            await transactionalEntityManager.save(answerCategory); // Обновляем категорию
+        if (otherCategory) {
+            if (!otherCategory.surveyQuestions) {
+                otherCategory.surveyQuestions = [];
+            }
+    
+            otherCategory.surveyQuestions.push(surveyQuestion);
+            
+            await transactionalEntityManager.save(otherCategory);}
+          }
         }
-      }
+      
 
       return savedSurvey;
     });
