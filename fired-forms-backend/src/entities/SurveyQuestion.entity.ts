@@ -30,6 +30,4 @@ export class SurveyQuestion {
   @Column()
   answer: string;
 
-  @OneToMany(() => ResponseCategory, (category) => category.surveyQuestion)
-  responseCategories: ResponseCategory[];
 }

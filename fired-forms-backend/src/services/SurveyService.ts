@@ -20,49 +20,53 @@ export class SurveyService {
 
   async createSurvey(userId: number, createSurveyDto: CreateSurveyDto): Promise<Survey> {
     return await this.surveyRepository.manager.transaction(async transactionalEntityManager => {
-      const survey = new Survey();
-      survey.user = { id: userId } as User;
-
+      // Создаем опрос без установки completionDate
+      const survey = this.surveyRepository.create({
+        user: { id: userId } as User,  // Установите пользователя
+        // completionDate не добавляем, он будет установлен автоматически
+      });
+  
+      // Сохраняем опрос
       const savedSurvey = await transactionalEntityManager.save(survey);
-
+  
       for (const questionDto of createSurveyDto.surveyQuestions) {
         const surveyQuestion = new SurveyQuestion();
         const question = await this.questionRepository.findOne({ where: { id: questionDto.questionId } });
-
+  
         if (!question) {
           throw new Error(`Question with id ${questionDto.questionId} not found`);
         }
-
+  
         surveyQuestion.survey = savedSurvey;
         surveyQuestion.question = question;
         surveyQuestion.answer = questionDto.answer;
+  
         const answerCategories = await this.answerCategoryRepository.find();
         const categoriesArray = answerCategories.map(category => category.name);
         const categoryName = await executeRequest(`
-        Ты — нейросеть для классификации текстов. Твоя задача — проанализировать вопрос и ответ, а затем отнести ответ к одной из категорий.
-         Категории могут быть: ${categoriesArray},
-        если нужной категории нет, "Прочее".`,
-          `Классифицируй следующий текст:
-        
-        Вопрос: "${surveyQuestion.question}"
-        Ответ: "${surveyQuestion.answer}"
-        
-        Укажи категорию:
+          Ты — нейросеть для классификации текстов. Твоя задача — проанализировать вопрос и ответ, а затем отнести ответ к одной из категорий,`,`
+          Категории могут быть: ${categoriesArray},
+          если нужной категории нет, "Прочее".
+          Классифицируй следующий текст:
+  
+          Вопрос: "${surveyQuestion.question}"
+          Ответ: "${surveyQuestion.answer}"
+  
+          Укажи категорию:
         `);
-
+  
         const finalCategoryName = categoryName.trim().replace(/[.,]/g, '') ?? "Прочее";
         let answerCategory = await this.answerCategoryRepository.findOne({ where: { name: finalCategoryName } });
         if (!answerCategory) {
-          answerCategory = await this.answerCategoryRepository.findOne({ where: { name: "Прочее" } });;
+          answerCategory = await this.answerCategoryRepository.findOne({ where: { name: "Прочее" } }); // Попробуйте найти категорию "Прочее"
         }
-          surveyQuestion.answerCategory = answerCategory;
-          await transactionalEntityManager.save(surveyQuestion);
-        
-
+  
+        surveyQuestion.answerCategory = answerCategory;
+        await transactionalEntityManager.save(surveyQuestion);
       }
-
-
+  
       return savedSurvey;
     });
   }
+  
 }
