@@ -1,42 +1,61 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #f4f4f4; /* Светлый фон для всего приложения */
-  position: relative; /* Для абсолютного позиционирования кнопки */
-}
-
 .login-button-container {
-  position: absolute; /* Позволяет позиционировать кнопку относительно родительского контейнера */
-  top: 20px; /* Отступ сверху */
-  left: 20px; /* Отступ слева */
+  position: absolute;
+  top: 20px;
+  left: 20px; 
 }
 
 .home-content {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f4f4f4;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
   align-items: center;
-  margin-bottom: 20px;
+  box-shadow: 4px 4px 8px -3px rgba(34, 60, 80, 0.2);
+  border-radius: 20px;
+  padding: 64px 16px 64px 16px;
 }
 
-.home-image {
-  /* Пример стиля для изображения */
-  width: 150px;
-  height: 150px;
-  background-color: #ccc; /* Замените на фоновое изображение */
-  border-radius: 75px; /* Круглая форма */
-  margin-right: 20px;
+.home-image
+{
+  display: flex;
+  justify-content: center;
+}
+
+.home-image img{
+  width: 80%;
+  height: auto;
+  border-radius: 20px;
 }
 
 .home-text {
   text-align: left;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
-  color: #333; /* Цвет заголовка */
+.home-text h1{
+  color: #333;
 }
 
-p {
+.home-text p {
   color: #555; /* Цвет текста */
+}
+
+@media (max-width: 700px)
+{
+  .home-content
+  {
+    display: block;
+    height: auto;
+    text-align: center;
+    font-size: small;
+  }
+  .home-content .home-image{
+    display: none;
+  }
 }

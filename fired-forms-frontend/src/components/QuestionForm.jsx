@@ -87,7 +87,7 @@ const QuestionForm = () => {
             />
           </div>
         ))}
-        <button type="submit" disabled={submitting} className="submit-button">Отправить</button>
+        <button type="submit" disabled={submitting}>Отправить</button>
         {submitting && <p className="loading-text">Отправка данных...</p>} {/* Индикатор загрузки */}
       </form>
     </div>
