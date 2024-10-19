@@ -1,10 +1,9 @@
-// Update the LoginForm.js as follows
 import React, { useState } from "react";
 import '../styles/LoginForm.css';
 import CloseButton from "./CloseButton";
 import { loginUser } from '../api/authService';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import Cookies from 'js-cookie';
 
 function LoginForm({ onClose, onLoginSuccess }) {
@@ -42,7 +41,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
                 navigate('/hr');
             }
             if (userLevel === "default"){
-                navigate('default');
+                navigate('/default');
             }
         } catch (error) {
             setError(error.message);
@@ -52,10 +51,10 @@ function LoginForm({ onClose, onLoginSuccess }) {
     };
 
     return (
-        <div className="login-form">
+        <div className="login-form-container">
             <CloseButton onClick={onClose} />
-            <p>Вход</p>
-            <form onSubmit={handleForm}>
+            <h2 className="form-title">Вход</h2>
+            <form className="login-form" onSubmit={handleForm}>
                 <label htmlFor="login">Введите Ваш логин</label>
                 <input
                     type="text"
@@ -63,6 +62,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
                     value={login}
                     onChange={(e) => setLogin(e.target.value)}
                     required
+                    className="form-input"
                 />
                 <label htmlFor="password">Введите Ваш пароль</label>
                 <input
@@ -71,9 +71,10 @@ function LoginForm({ onClose, onLoginSuccess }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="form-input"
                 />
                 {error && <p className="error">{error}</p>}
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading} className="submit-button">
                     {loading ? 'Загрузка...' : 'Отправить'}
                 </button>
             </form>

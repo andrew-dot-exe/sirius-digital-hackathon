@@ -15,12 +15,13 @@ export class SurveyService {
     @InjectRepository(Survey) private surveyRepository: Repository<Survey>,
     @InjectRepository(SurveyQuestion) private surveyQuestionRepository: Repository<SurveyQuestion>,
     @InjectRepository(Question) private questionRepository: Repository<Question>,
-  ) {}
+    @InjectRepository(AnswerCategory) private answerCategoryRepository: Repository<AnswerCategory>,
+  ) { }
 
   async createSurvey(userId: number, createSurveyDto: CreateSurveyDto): Promise<Survey> {
     return await this.surveyRepository.manager.transaction(async transactionalEntityManager => {
       const survey = new Survey();
-      survey.user = { id: userId } as User; 
+      survey.user = { id: userId } as User;
 
       const savedSurvey = await transactionalEntityManager.save(survey);
 
@@ -35,51 +36,31 @@ export class SurveyService {
         surveyQuestion.survey = savedSurvey;
         surveyQuestion.question = question;
         surveyQuestion.answer = questionDto.answer;
-
-        const answerCategories = await transactionalEntityManager.find(AnswerCategory, {
-          select: ['name'],
-        });
+        const answerCategories = await this.answerCategoryRepository.find();
         const categoriesArray = answerCategories.map(category => category.name);
         const categoryName = await executeRequest(`
         Ты — нейросеть для классификации текстов. Твоя задача — проанализировать вопрос и ответ, а затем отнести ответ к одной из категорий.
          Категории могут быть: ${categoriesArray},
-        если нужной категории нет, "Другое".`,
-        `Классифицируй следующий текст:
+        если нужной категории нет, "Прочее".`,
+          `Классифицируй следующий текст:
         
         Вопрос: "${surveyQuestion.question}"
         Ответ: "${surveyQuestion.answer}"
         
         Укажи категорию:
         `);
-        await delay(200);
-        
-        const finalCategoryName = categoryName ?? "Другое";
-        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: finalCategoryName } });
-        if (answerCategory) {
-          if (!answerCategory.surveyQuestions) {
-              answerCategory.surveyQuestions = []; 
-          }
-      
-          answerCategory.surveyQuestions.push(surveyQuestion);
-          
-          await transactionalEntityManager.save(answerCategory);
-        
-        await transactionalEntityManager.save(surveyQuestion);
-      } 
-      else{
-        let otherCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: 'Другое' } });
 
-        if (otherCategory) {
-            if (!otherCategory.surveyQuestions) {
-                otherCategory.surveyQuestions = [];
-            }
-    
-            otherCategory.surveyQuestions.push(surveyQuestion);
-            
-            await transactionalEntityManager.save(otherCategory);}
-          }
+        const finalCategoryName = categoryName.trim().replace(/[.,]/g, '') ?? "Прочее";
+        let answerCategory = await this.answerCategoryRepository.findOne({ where: { name: finalCategoryName } });
+        if (!answerCategory) {
+          answerCategory = await this.answerCategoryRepository.findOne({ where: { name: "Прочее" } });;
         }
-      
+          surveyQuestion.answerCategory = answerCategory;
+          await transactionalEntityManager.save(surveyQuestion);
+        
+
+      }
+
 
       return savedSurvey;
     });

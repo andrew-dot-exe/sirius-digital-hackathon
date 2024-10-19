@@ -1,0 +1,58 @@
+/* styles/ReportPage.css */
+
+.report-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Задаем высоту для центрирования */
+    background-color: #f9f9f9; /* Светлый фон для страницы */
+}
+
+.report-form {
+    background-color: #ffffff; /* Белый фон для формы */
+    padding: 20px;
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    width: 400px; /* Ширина формы */
+}
+
+.report-form h2 {
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
+}
+
+.date-picker-container {
+    display: flex; /* Используем flex для горизонтального расположения */
+    justify-content: space-between; /* Пробел между элементами */
+    margin-bottom: 20px; /* Отступ снизу для контейнера с датами */
+}
+
+.date-picker-item {
+    flex: 1; /* Каждый элемент занимает равную ширину */
+    margin-right: 10px; /* Отступ справа для всех элементов, кроме последнего */
+}
+
+.date-picker-item:last-child {
+    margin-right: 0; /* Убираем отступ для последнего элемента */
+}
+
+.date-picker {
+    width: 100%; /* Ширина поля ввода на 100% */
+    padding: 10px; /* Отступ внутри поля */
+    border: 1px solid #ccc; /* Граница поля */
+    border-radius: 5px; /* Скругленные углы */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.submit-button {
+    background-color: #007bff; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 15px; /* Отступы внутри кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}

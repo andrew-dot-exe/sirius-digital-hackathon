@@ -1,24 +1,24 @@
-.login-button {
-    background-color: #007bff; /* Цвет кнопки */
-    color: white; /* Цвет текста на кнопке */
+.close-button {
+    background-color: #dc3545; /* Красный цвет для кнопки закрытия */
+    color: white; /* Белый цвет текста на кнопке */
     padding: 10px 20px; /* Отступы сверху и снизу, слева и справа */
     border: none; /* Без обводки */
     border-radius: 4px; /* Закругление углов */
     font-size: 16px; /* Размер шрифта */
     cursor: pointer; /* Указатель мыши */
-    transition: background-color 0.3s; /* Плавный переход */
+    transition: background-color 0.3s; /* Плавный переход цвета */
     text-align: center; /* Центрирование текста */
 }
 
-.login-button:hover {
-    background-color: #0056b3; /* Цвет кнопки при наведении */
+.close-button:hover {
+    background-color: #c82333; /* Темнее при наведении */
 }
 
-.login-button:focus {
+.close-button:focus {
     outline: none; /* Убираем обводку при фокусе */
 }
 
-.login-button:disabled {
+.close-button:disabled {
     background-color: #ccc; /* Цвет кнопки, когда она отключена */
     cursor: not-allowed; /* Указатель мыши, когда кнопка отключена */
 }

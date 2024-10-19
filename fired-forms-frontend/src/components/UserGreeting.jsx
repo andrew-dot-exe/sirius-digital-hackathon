@@ -1,9 +1,8 @@
-// src/components/UserGreeting.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/UserGreeting.css'; // Импорт стилей
 
 const UserGreeting = ({ userFIO, onLogout }) => {
-    
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -13,8 +12,8 @@ const UserGreeting = ({ userFIO, onLogout }) => {
 
     return (
         <div className="user-greeting">
-            <p>{userFIO}</p>
-            <button onClick={handleLogout}>Выйти</button> 
+            <p className="greeting-message">Добро пожаловать, {userFIO}!</p>
+            <button className="logout-button" onClick={handleLogout}>Выйти</button> 
         </div>
     );
 };

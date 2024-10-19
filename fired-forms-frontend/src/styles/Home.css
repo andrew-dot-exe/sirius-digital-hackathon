@@ -1,31 +1,42 @@
-.home-content
-{
-  width: 90%;     
-  position: absolute;
-  height: 75%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  box-shadow: 4px 4px 8px 6px rgba(34, 60, 80, 0.2);
+.App {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  color: black;
+  padding: 20px;
+  background-color: #f4f4f4; /* Светлый фон для всего приложения */
+  position: relative; /* Для абсолютного позиционирования кнопки */
 }
 
-@media (max-width: 700px) {
-  .home-content{
-    display: grid;
-    grid-template-columns: auto;
-    
-  }
-  .home-image{
-    display: none;
-  }
+.login-button-container {
+  position: absolute; /* Позволяет позиционировать кнопку относительно родительского контейнера */
+  top: 20px; /* Отступ сверху */
+  left: 20px; /* Отступ слева */
 }
 
-.home-text
-{
-  color: black;
+.home-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-image {
+  /* Пример стиля для изображения */
+  width: 150px;
+  height: 150px;
+  background-color: #ccc; /* Замените на фоновое изображение */
+  border-radius: 75px; /* Круглая форма */
+  margin-right: 20px;
+}
+
+.home-text {
+  text-align: left;
+}
+
+h1 {
+  color: #333; /* Цвет заголовка */
+}
+
+p {
+  color: #555; /* Цвет текста */
 }
