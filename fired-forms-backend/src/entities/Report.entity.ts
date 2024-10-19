@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
 import { ReportRecommendation } from './ReportRecomendation.entity'; // Путь к файлу с сущностью ReportRecommendation
 
 @Entity('reports') // Название таблицы
@@ -22,5 +22,6 @@ export class Report {
     () => ReportRecommendation,
     (recommendation) => recommendation.report,
   )
+  @JoinColumn()
   recommendations: ReportRecommendation[];
 }

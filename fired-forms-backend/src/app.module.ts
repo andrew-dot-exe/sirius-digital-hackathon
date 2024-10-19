@@ -13,6 +13,7 @@ import { SurveyQuestion } from './entities/SurveyQuestion.entity';
 import { Report } from './entities/Report.entity';
 import { QuestionsModule } from './question.module';
 import { SurveyModule } from './survey.module';
+import { ReportsModule } from './reports.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { SurveyModule } from './survey.module';
     TypeOrmModule.forFeature([User, UserLevel, AnswerCategory, Survey, Question, Report, ReportRecommendation, ResponseCategory, SurveyQuestion]),
     UsersModule,
     QuestionsModule,
-    SurveyModule
+    SurveyModule,
+    ReportsModule
   ],
 })
 export class AppModule {}
