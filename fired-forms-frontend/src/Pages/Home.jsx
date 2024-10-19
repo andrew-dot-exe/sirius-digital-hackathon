@@ -4,6 +4,7 @@ import LoginButton from '../components/LoginButton';
 import LoginForm from '../components/LoginForm';
 import UserGreeting from '../components/UserGreeting';
 import "../styles/Home.css";
+import inRoom from "../routes/inRoom";
 
 function Home() {
     const [isFormVisible, setFormVisible] = useState(false);
@@ -60,7 +61,7 @@ function Home() {
                 <LoginForm onClose={CloseLoginForm} onLoginSuccess={handleLoginSuccess} />
             )}
             {userFIO && <UserGreeting userFIO={userFIO} onLogout={handleLogout} />}
-
+            {userFIO && <button onClick={inRoom}/>}
         </div>
     );
 }
