@@ -37,7 +37,7 @@ function Home() {
         setFormVisible(false);
         setLoginButtonVisible(false);
         Cookies.set('userFIO', fio);
-        navigate('/dashboard'); // Перенаправление на главную страницу после входа
+        navigate('/'); // Перенаправление на главную страницу после входа
     };
 
     const handleLogout = () => {
