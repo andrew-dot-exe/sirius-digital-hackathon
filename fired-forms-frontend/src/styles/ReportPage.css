@@ -1,65 +1,58 @@
-.report-form 
-{
-    display: grid;
-    position: absolute;
-    z-index: 2;
-    padding: 5px;
-    grid-template-columns: 100px;
-    grid-template-rows: repeat(6, auto);
-    /* grid-template-columns: repeat(2, auto); */
-    gap: 16px;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    padding: 10px, 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
-    background-color: #f9f9f9; 
-}
-/* Стиль для меток (label) */
-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
+/* styles/ReportPage.css */
+
+.report-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Задаем высоту для центрирования */
+    background-color: #f9f9f9; /* Светлый фон для страницы */
 }
 
-p{
-    color: #405cf5;
-    font-weight: bold;
-    margin: auto;
-    font-size: 25px;
-    font-family: 'sans-serif';
+.report-form {
+    background-color: #ffffff; /* Белый фон для формы */
+    padding: 20px;
+    border-radius: 8px; /* Скругленные углы */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    width: 400px; /* Ширина формы */
 }
 
-form input{
-    width: 100%; 
-    padding: 5px;
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    font-size: 16px; 
-    box-sizing: border-box;
+.report-form h2 {
+    margin-bottom: 20px; /* Отступ снизу для заголовка */
 }
 
-/* Стиль для кнопки отправки */
-form input[type="submit"] {
-    width: 100%; /* Кнопка занимает всю ширину формы */
-    padding: 10px;
-    background-color: #28a745; /* Цвет фона */
-    color: white; /* Цвет текста */
-    border: none; /* Убираем рамку */
-    border-radius: 5px; /* Закругленные углы */
-    font-size: 18px;
-    cursor: pointer; /* Указатель курсора при наведении */
-    transition: background-color 0.3s ease; /* Анимация наводки */
+.date-picker-container {
+    display: flex; /* Используем flex для горизонтального расположения */
+    justify-content: space-between; /* Пробел между элементами */
+    margin-bottom: 20px; /* Отступ снизу для контейнера с датами */
 }
 
-/* Стили для кнопки при наведении */
-form input[type="submit"]:hover {
-    background-color: #218838; /* Изменение фона при наведении */
+.date-picker-item {
+    flex: 1; /* Каждый элемент занимает равную ширину */
+    margin-right: 10px; /* Отступ справа для всех элементов, кроме последнего */
 }
 
-/* Стили для текста ошибок или сообщений */
-form .error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
+.date-picker-item:last-child {
+    margin-right: 0; /* Убираем отступ для последнего элемента */
+}
+
+.date-picker {
+    width: 100%; /* Ширина поля ввода на 100% */
+    padding: 10px; /* Отступ внутри поля */
+    border: 1px solid #ccc; /* Граница поля */
+    border-radius: 5px; /* Скругленные углы */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.submit-button {
+    background-color: #007bff; /* Цвет кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 15px; /* Отступы внутри кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Скругленные углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
 }

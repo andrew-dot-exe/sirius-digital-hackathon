@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie'; // Import js-cookie
+import Cookies from 'js-cookie';
 import LoginButton from '../components/LoginButton';
 import LoginForm from '../components/LoginForm';
 import UserGreeting from '../components/UserGreeting';
 import "../styles/Home.css";
-import inRoom from "../routes/inRoom";
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const [isFormVisible, setFormVisible] = useState(false);
     const [isLoginButtonVisible, setLoginButtonVisible] = useState(true);
-    const [userFIO, setUserFIO] = useState(null); // State to store user's FIO
+    const [userFIO, setUserFIO] = useState(null);
+    const navigate = useNavigate();
+
     useEffect(() => {
-        // Check if authToken exists in cookies
         const token = Cookies.get('authToken');
-        const fio = Cookies.get('userFIO'); // Assuming you're storing FIO in cookies
+        const fio = Cookies.get('userFIO');
         if (token && fio) {
-            setUserFIO(fio); // Set userFIO if already authenticated
-            setLoginButtonVisible(false); // Hide login button
+            setUserFIO(fio);
+            setLoginButtonVisible(false);
         }
     }, []);
 
@@ -31,23 +32,25 @@ function Home() {
     };
 
     const handleLoginSuccess = (fio) => {
-        setUserFIO(fio); // Update the FIO state upon successful login
-        setFormVisible(false); // Close the login form
-        setLoginButtonVisible(false); // Hide the login button
-
-        // Store user FIO in cookies for future reference
-        Cookies.set('userFIO', fio); // Store the user's FIO in cookies
+        setUserFIO(fio);
+        setFormVisible(false);
+        setLoginButtonVisible(false);
+        Cookies.set('userFIO', fio);
+        navigate('/dashboard'); // Перенаправление на главную страницу после входа
     };
 
     const handleLogout = () => {
-        setUserFIO(null); // Clear the user's FIO
-        Cookies.remove('authToken'); // Clear the authToken cookie
-        Cookies.remove('userFIO'); // Clear the userFIO cookie
-        setLoginButtonVisible(true); // Show the login button again
+        setUserFIO(null);
+        Cookies.remove('authToken');
+        Cookies.remove('userFIO');
+        setLoginButtonVisible(true);
     };
 
     return (
         <div className='App'>
+            <div className='login-button-container'>
+                {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />}
+            </div>
             <div className='home-content'>
                 <div className='home-image'></div>
                 <div className='home-text'>
@@ -56,12 +59,10 @@ function Home() {
                     <p>Введите корректный логин и пароль, выданный Вам системным администратором.</p>
                 </div>
             </div>
-            {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />}
             {isFormVisible && (
                 <LoginForm onClose={CloseLoginForm} onLoginSuccess={handleLoginSuccess} />
             )}
             {userFIO && <UserGreeting userFIO={userFIO} onLogout={handleLogout} />}
-            {userFIO && <button onClick={inRoom}/>}
         </div>
     );
 }

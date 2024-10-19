@@ -1,10 +1,9 @@
 import React from "react";
-import '../styles/СloseButton.css';
+import '../styles/CloseButton.css'; 
 
-const CloseButton = ({onClick}) =>
-{
+const CloseButton = ({ onClick }) => {
     return (
-        <button  className="close-button" onClick={onClick}>
+        <button className="close-button" onClick={onClick}>
             Закрыть
         </button>
     );
