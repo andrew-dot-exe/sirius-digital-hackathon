@@ -13,10 +13,10 @@ export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
   host: 'localhost',
   port: 5432,
-  username: 'postgres',
+  username: 'postgres', //Ваш логин
   //Никитиа sa
   //Дима qwerty
-  password: 'qwerty',
+  password: 'qwerty', // Ваш пароль
   database: 'postgres',
   logging: true,
   synchronize: false,
