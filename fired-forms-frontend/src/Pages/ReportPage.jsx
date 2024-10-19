@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from 'react'
 import "../styles/ReportPage.css"
 import DatePicker from 'react-datepicker';
-import { format } from 'date-fns';
 
 function ReportPage() {
     const [selectedFirstDate, setSelectedFirstDate] = useState(null);

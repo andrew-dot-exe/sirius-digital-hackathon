@@ -6,23 +6,24 @@ import Cookies from 'js-cookie';
 
 function HrPage()
 {
-    const [userFio, setUserFio] = useState(null);
+    const [userFIO, setUserFIO] = useState(null);
+
     useEffect(() => {
-        const fio = Cookies.get('userFIO');
-        if (fio)
-        {
-            setUserFio(fio);
+        const token = Cookies.get('authToken');
+        const FIO = Cookies.get('userFIO'); // Здесь Cookie используется правильно
+        if (token){
+            setUserFIO(FIO);
         }
     }, []);
 
-	const handleLogout = () => {
-        setUserFio(null);
-        Cookies.remove('userFIO');
+    const handleLogout = () => {
+        setUserFIO(null); // Очищаем FIO при выходе
+        Cookies.remove('userFIO'); // Удаляем Cookie
     };
     return (
         <div className="hr-page">
             <QuestionForm />
-            <UserGreeting userFio={userFio} onLogout={handleLogout} />
+            <UserGreeting userFio={userFIO} onLogout={handleLogout} />
         </div>
         
     );
