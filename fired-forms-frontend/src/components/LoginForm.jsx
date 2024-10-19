@@ -37,8 +37,12 @@ function LoginForm({ onClose, onLoginSuccess }) {
 
             if (userLevel === "manager") {
                 navigate('/report');
-            } else {
-                console.log("another logging");
+            }   
+            if (userLevel === "hr"){
+                navigate('/hr');
+            }
+            if (userLevel === "default"){
+                navigate('default');
             }
         } catch (error) {
             setError(error.message);
