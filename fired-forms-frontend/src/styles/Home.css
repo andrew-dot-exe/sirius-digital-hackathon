@@ -1,15 +1,14 @@
 .home-content
 {
-  width: 95%;     
+  width: 90%;     
   position: absolute;
-  height: 80%;
+  height: 75%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(2, 50%);
-  justify-content: center;
   box-shadow: 4px 4px 8px 6px rgba(34, 60, 80, 0.2);
   align-items: center;
   color: black;
@@ -18,8 +17,11 @@
 @media (max-width: 700px) {
   .home-content{
     display: grid;
-    grid-template-rows: repeat(2, auto);
     grid-template-columns: auto;
+    
+  }
+  .home-image{
+    display: none;
   }
 }
 
