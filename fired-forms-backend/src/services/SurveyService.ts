@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, EntityManager } from 'typeorm';
 import { Survey } from '../entities/Survey.entity';
@@ -7,7 +7,7 @@ import { Question } from '../entities/Question.entity';
 import { CreateSurveyDto } from '../dto/CreateSurvey.dto';
 import { User } from '../entities/User.entity';
 import { executeRequest } from '../yandexai-prompts/logic';
-import { AnswerCategory } from 'src/entities/AnswerCategory.entity';
+import { AnswerCategory } from '../entities/AnswerCategory.entity';
 @Injectable()
 export class SurveyService {
   constructor(
@@ -35,26 +35,22 @@ export class SurveyService {
         surveyQuestion.question = question;
         surveyQuestion.answer = questionDto.answer;
 
-        const categoryName = await executeRequest(`Необходимо ответить на вопрос, ${surveyQuestion.question}` +
-        "Ответ должен быть таким, чтобы его можно было категоризовать, то есть, состоять из минимума слов. Не должно быть никаких уточнений",
+        const categoryName = await executeRequest(`Необходимо ответить на вопрос, "${surveyQuestion.question}"` +
+        "Ответ должен быть категорией ответа, то есть, состоять из минимума слов. Не должно быть никаких уточнений",
         surveyQuestion.answer);
         
-        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: categoryName } });
+        const finalCategoryName = categoryName ?? "Другое";
+        let answerCategory = await transactionalEntityManager.findOne(AnswerCategory, { where: { name: finalCategoryName } });
 
         if (!answerCategory) {
             answerCategory = new AnswerCategory();
-            answerCategory.name = categoryName;
-
-            // Добавляем surveyQuestion к answerCategory
+            answerCategory.name = finalCategoryName;
+            answerCategory.surveyQuestions = [];
             answerCategory.surveyQuestions.push(surveyQuestion);
-
-            // Сохраняем новую категорию
             await transactionalEntityManager.save(answerCategory);
-        } else {
-            // Если категория уже существует, просто добавляем surveyQuestion к существующей категории
-            answerCategory.surveyQuestions.push(surveyQuestion);
-            await transactionalEntityManager.save(answerCategory); // Обновляем категорию
         }
+        
+        await transactionalEntityManager.save(surveyQuestion);
       }
 
       return savedSurvey;
