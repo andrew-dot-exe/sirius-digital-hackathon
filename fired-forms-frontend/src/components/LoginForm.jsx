@@ -28,7 +28,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
             const decodedToken = jwtDecode(token);
             const userLevel = decodedToken.userLevel;
             const userFIO = decodedToken.username; // Assuming FIO is included in the token
-            
+            console.log(decodedToken);
             Cookies.set('authToken', token); // Store the token in cookies
             Cookies.set('userFIO', userFIO); // Store the user's FIO in cookies
 
