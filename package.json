@@ -4,7 +4,9 @@
   "description": "Solution by HackstreetBoys team",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "npm run dev --prefix fired-forms-frontend/"
+    "frontend": "npm run dev --prefix fired-forms-frontend/",
+    "backend":"npm run run",
+    "all": "concurrently \"npm run run  --prefix fired-forms-backend/ \" \"npm run dev  --prefix fired-forms-frontend/ \""
   },
   "author": "",
   "license": "ISC",
