@@ -1,61 +1,62 @@
 .login-form-container {
-    max-width: 400px; /* Максимальная ширина формы */
-    margin: 0 auto; /* Центрирование */
-    padding: 20px; /* Отступы */
-    border: 1px solid #ccc; /* Обводка */
+    padding: 20px;  
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 8px; /* Закругление углов */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень */
     background-color: #f9f9f9; /* Цвет фона */
 }
 
 .form-title {
-    text-align: center; /* Центрирование заголовка */
-    color: #333; /* Цвет текста заголовка */
-    margin-bottom: 20px; /* Отступ снизу */
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .login-form {
-    display: flex; /* Используем флекс для размещения элементов */
-    flex-direction: column; /* Вертикальное расположение */
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 16px;
 }
 
 label {
-    margin-bottom: 5px; /* Отступ снизу */
-    font-weight: bold; /* Жирный шрифт */
-    color: #555; /* Цвет текста метки */
+    font-weight: bold;
+    color: #555;
 }
 
-.form-input {
-    width: 100%; /* Ширина на 100% */
-    padding: 10px; /* Отступы внутри поля */
-    border: 1px solid #ccc; /* Обводка */
-    border-radius: 4px; /* Закругление углов */
-    font-size: 16px; /* Размер шрифта */
-    margin-bottom: 15px; /* Отступ между полями ввода */
+.login-form input
+{
+    width: 90%;
 }
 
 .error {
-    color: red; /* Цвет текста ошибки */
-    font-size: 14px; /* Размер шрифта для ошибок */
-    text-align: center; /* Центрирование текста ошибки */
+    color: red;
+    font-size: 14px; 
+    text-align: center;
 }
 
-.submit-button {
-    background-color: #4CAF50; /* Цвет кнопки */
-    color: white; /* Цвет текста на кнопке */
-    padding: 10px; /* Отступы */
-    border: none; /* Без обводки */
-    border-radius: 4px; /* Закругление углов */
-    font-size: 16px; /* Размер шрифта */
-    cursor: pointer; /* Указатель мыши */
-    transition: background-color 0.3s; /* Плавный переход */
+button[type="submit"]
+{
+    background-color: #007bff;
+    color: white;
+    padding: 10px; 
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.submit-button:disabled {
-    background-color: #ccc; /* Цвет кнопки, когда она отключена */
-    cursor: not-allowed; /* Указатель мыши, когда кнопка отключена */
+button[type="submit"]:disabled {
+    background-color: #ccc; 
+    cursor: not-allowed; 
 }
 
-.submit-button:hover:not(:disabled) {
-    background-color: #45a049; /* Цвет кнопки при наведении */
+button[type="submit"]:hover:not(:disabled) {
+    background-color: #0056b3;
 }

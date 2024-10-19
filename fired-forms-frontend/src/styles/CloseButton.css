@@ -1,13 +1,14 @@
 .close-button {
     background-color: #dc3545; /* Красный цвет для кнопки закрытия */
     color: white; /* Белый цвет текста на кнопке */
-    padding: 10px 20px; /* Отступы сверху и снизу, слева и справа */
+    padding: 10px;
     border: none; /* Без обводки */
     border-radius: 4px; /* Закругление углов */
     font-size: 16px; /* Размер шрифта */
     cursor: pointer; /* Указатель мыши */
     transition: background-color 0.3s; /* Плавный переход цвета */
     text-align: center; /* Центрирование текста */
+    font-weight: 1000;
 }
 
 .close-button:hover {

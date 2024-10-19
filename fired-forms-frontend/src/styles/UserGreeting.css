@@ -1,41 +1,39 @@
 .user-greeting {
+    position: absolute;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Центрируем содержимое */
-    margin: 20px; /* Отступы вокруг */
-    padding: 20px; /* Внутренние отступы */
-    border: 1px solid #ccc; /* Обводка */
-    border-radius: 8px; /* Закругление углов */
-    background-color: #f8f9fa; /* Светлый фон */
+    column-gap: 8px;
+    top: 20px;
+    right: 20px;
+    align-items: center;
 }
 
 .greeting-message {
-    font-size: 18px; /* Размер шрифта */
-    color: #333; /* Цвет текста */
-    margin-bottom: 10px; /* Отступ снизу */
-    text-align: center; /* Центрирование текста */
+    font-size: 16px;
 }
 
 .logout-button {
-    background-color: #007bff; /* Цвет кнопки */
-    color: white; /* Цвет текста на кнопке */
-    padding: 10px 15px; /* Отступы */
-    border: none; /* Без обводки */
-    border-radius: 4px; /* Закругление углов */
-    font-size: 16px; /* Размер шрифта */
-    cursor: pointer; /* Указатель мыши */
-    transition: background-color 0.3s; /* Плавный переход цвета */
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+    text-align: center; 
 }
 
 .logout-button:hover {
-    background-color: #0056b3; /* Темнее при наведении */
+    background-color: #0056b3;
 }
 
 .logout-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
+    outline: none;
 }
 
 .logout-button:disabled {
-    background-color: #ccc; /* Цвет кнопки, когда она отключена */
-    cursor: not-allowed; /* Указатель мыши, когда кнопка отключена */
+    background-color: #ccc;
+    cursor: not-allowed; 
 }
+
+

@@ -12,7 +12,7 @@ const UserGreeting = ({ userFIO, onLogout }) => {
 
     return (
         <div className="user-greeting">
-            <p className="greeting-message">Добро пожаловать, {userFIO}!</p>
+            <p className="greeting-message">{userFIO}</p>
             <button className="logout-button" onClick={handleLogout}>Выйти</button> 
         </div>
     );

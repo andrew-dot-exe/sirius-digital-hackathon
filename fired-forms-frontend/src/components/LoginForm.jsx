@@ -37,7 +37,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
             if (userLevel === "manager") {
                 navigate('/report');
             }   
-            if (userLevel === "hr"){
+            if (    userLevel === "hr"){
                 navigate('/hr');
             }
             if (userLevel === "default"){
@@ -53,7 +53,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
     return (
         <div className="login-form-container">
             <CloseButton onClick={onClose} />
-            <h2 className="form-title">Вход</h2>
+            <p className="form-title">Вход</p>
             <form className="login-form" onSubmit={handleForm}>
                 <label htmlFor="login">Введите Ваш логин</label>
                 <input
@@ -74,7 +74,7 @@ function LoginForm({ onClose, onLoginSuccess }) {
                     className="form-input"
                 />
                 {error && <p className="error">{error}</p>}
-                <button type="submit" disabled={loading} className="submit-button">
+                <button type="submit" disabled={loading}>
                     {loading ? 'Загрузка...' : 'Отправить'}
                 </button>
             </form>

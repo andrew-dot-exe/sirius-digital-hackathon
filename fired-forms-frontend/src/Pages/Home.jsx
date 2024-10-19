@@ -5,6 +5,7 @@ import LoginForm from '../components/LoginForm';
 import UserGreeting from '../components/UserGreeting';
 import "../styles/Home.css";
 import { useNavigate } from 'react-router-dom';
+import companyImage from '../assets/company.jpg'
 
 function Home() {
     const [isFormVisible, setFormVisible] = useState(false);
@@ -47,12 +48,15 @@ function Home() {
     };
 
     return (
-        <div className='App'>
+        <div className='Home'>
             <div className='login-button-container'>
                 {isLoginButtonVisible && <LoginButton onClick={ToggleVisibleLoginForm} />}
             </div>
+            {userFIO && <UserGreeting userFIO={userFIO} onLogout={handleLogout} />}
             <div className='home-content'>
-                <div className='home-image'></div>
+                <div className='home-image'>
+                    <img src = {companyImage} />
+                </div>
                 <div className='home-text'>
                     <h1>Уважаемый сотрудник!</h1>
                     <p>Добро пожаловать на сайт, где Вы можете войти в личный кабинет сотрудника компании.</p>
@@ -62,7 +66,6 @@ function Home() {
             {isFormVisible && (
                 <LoginForm onClose={CloseLoginForm} onLoginSuccess={handleLoginSuccess} />
             )}
-            {userFIO && <UserGreeting userFIO={userFIO} onLogout={handleLogout} />}
         </div>
     );
 }

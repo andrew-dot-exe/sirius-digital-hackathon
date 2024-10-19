@@ -1,24 +1,24 @@
 .login-button {
-    background-color: #007bff; /* Цвет кнопки */
-    color: white; /* Цвет текста на кнопке */
-    padding: 10px 20px; /* Отступы сверху и снизу, слева и справа */
-    border: none; /* Без обводки */
-    border-radius: 4px; /* Закругление углов */
-    font-size: 16px; /* Размер шрифта */
-    cursor: pointer; /* Указатель мыши */
-    transition: background-color 0.3s; /* Плавный переход */
-    text-align: center; /* Центрирование текста */
+    background-color: #007bff; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    text-align: center; 
 }
 
 .login-button:hover {
-    background-color: #0056b3; /* Цвет кнопки при наведении */
+    background-color: #0056b3; 
 }
 
 .login-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
+    outline: none; 
 }
 
 .login-button:disabled {
-    background-color: #ccc; /* Цвет кнопки, когда она отключена */
-    cursor: not-allowed; /* Указатель мыши, когда кнопка отключена */
+    background-color: #ccc; 
+    cursor: not-allowed; 
 }
