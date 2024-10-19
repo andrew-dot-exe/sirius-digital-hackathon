@@ -8,14 +8,15 @@ import { Question } from './entities/Question.entity'; // Путь к сущно
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt/JwtStrategy';
+import { AnswerCategory } from './entities/AnswerCategory.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Survey, SurveyQuestion, Question]),
+    TypeOrmModule.forFeature([Survey, SurveyQuestion, Question, AnswerCategory]),
     PassportModule,
     JwtModule.register({
       secret: 'hackstreetsecret',
-      signOptions: { expiresIn: '15m' },
+      signOptions: { expiresIn: '30m' },
     })
   ],
   controllers: [SurveyController], 
