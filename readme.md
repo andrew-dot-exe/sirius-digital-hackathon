@@ -1,6 +1,9 @@
 # Проект для хакатона Студент года от команды HackStreet Boys
 Тема "Sirius Digital Hack"
 
+# Ссылка на презентацию и видео
+https://disk.yandex.ru/d/qAHPZn8xP7bySQ
+
 ## Обзор
 
 Проект состоит из двух частей:
