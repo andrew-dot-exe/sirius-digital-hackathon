@@ -107,6 +107,12 @@ export class CreateUserAndUserLevelTables1672512345678
       ('hr'),
       ('default')`
     );
+    await queryRunner.query(`
+    INSERT INTO users (id, fio, login, password_hash, user_level_id) VALUES
+(3, 'Ярощук Никита Сергеевич', 'admin', '$2b$10$rj1eUwJmOzGAkNGH0lrbLefBUE0GxGJmlBC4RIfQQCWDqYu28/agC', 1),
+(4, 'Купцов Данила Сергеевич', 'admin1', '$2b$10$odoFSgjyeJAbxwFgnA5mZukCsLxggYI1D5jGeku43jkL7Hpn.49WW', 2),
+(5, 'Стародубов Олег Андреевич', 'admin2', '$2b$10$DK1tFFXgAeWZaAqM67rB5eJr9JxuBgAVWdYzXkSEHIdDP06eIMQs.', 3);
+`)
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
